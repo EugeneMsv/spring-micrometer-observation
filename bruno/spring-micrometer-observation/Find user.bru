@@ -1,0 +1,15 @@
+meta {
+  name: Find user
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8080/users/774c88d7-ddab-449d-abf5-da5d0ea5e2fa
+  body: none
+  auth: none
+}
+
+body:form-urlencoded {
+  name: name
+}

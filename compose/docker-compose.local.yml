@@ -1,0 +1,24 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+
+  spring-micrometer-observation:
+    image: com.github.eugenemsv/spring-micrometer-observation:latest
+    build:
+      context: .
+    container_name: spring-micrometer-observation
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - prometheus
+    environment:
+      - LANG=C.UTF-8
+
+volumes:
+  prometheus_data:
